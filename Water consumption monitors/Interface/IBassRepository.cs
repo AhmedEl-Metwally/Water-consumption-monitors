@@ -6,11 +6,9 @@ namespace Water_consumption_monitors.Interface
     public interface IBass<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
-        //Task<T> GetEntityWithSpes(T spec);
         Task<IReadOnlyList<T>> GetAllAsync();
         Task<int> CountAsync(T spec);
 
-        //void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
 

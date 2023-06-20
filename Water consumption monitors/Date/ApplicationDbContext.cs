@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Water_consumption_monitors.Models;
 
 namespace Water_consumption_monitors.Date
 {
-    public partial class ApplicationDbContext : DbContext
+    public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-        {
-        }
+
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -60,6 +60,7 @@ namespace Water_consumption_monitors.Date
                     .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.SubscriptionNumber)
                     .HasConstraintName("FK_Invoices_Subscriptions");
+                    base.OnModelCreating(modelBuilder); 
             });
 
             modelBuilder.Entity<Slidedistribution>(entity =>
